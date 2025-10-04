@@ -11,6 +11,7 @@ interface iUserDocument extends mongoose.Document {
   address?: string;
   city?: string;
   country?: string;
+  authType: 'local' | 'auth0';
   createdAt: Date;
   updatedAt: Date;
   comparePassword(val: string): Promise<boolean>;

@@ -19,6 +19,11 @@ const userSchema = new mongoose.Schema<iUserDocument>(
     password: {
       type: String,
     },
+    verified: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
     address: {
       type: String,
     },
@@ -27,6 +32,10 @@ const userSchema = new mongoose.Schema<iUserDocument>(
     },
     country: {
       type: String,
+    },
+    authType: {
+      type: String,
+      enum: ['local', 'auth0'],
     },
   },
   { timestamps: true }
