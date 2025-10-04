@@ -9,7 +9,7 @@ export const registerUser = async (req: Request, res: Response) => {
     const { auth0Id, email, name } = req.body;
     
 
-    //   check if user exists
+    //   check if incoming request contains auth0Id
     if (!auth0Id) {
       return res.status(BAD_REQUEST).json({ message: 'auth0Id is required' });
     }
@@ -19,7 +19,7 @@ export const registerUser = async (req: Request, res: Response) => {
     }
 
     //   create new user
-    user = new User({ auth0Id, email, name });
+    user = new User({ auth0Id, email });
     await user.save();
 
     //   return the response

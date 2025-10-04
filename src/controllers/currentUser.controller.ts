@@ -6,6 +6,9 @@ import { INTERNAL_SERVER_ERROR, NOT_FOUND, OK } from "../constants/http";
 
 
 export const updateCurrentUser = async (req: Request, res: Response) => {
+
+  console.log(req.auth?.payload.sub)
+  
   try {
     const { name, address, country, city } = req.body;
 

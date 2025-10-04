@@ -6,7 +6,7 @@ import { validateProfileUpdateRequest } from "../middleware/validation";
 const currentUserRoutes = express.Router();
 
 // /api/v1/me
-currentUserRoutes.put('/',jwtCheck, jwtParse, validateProfileUpdateRequest, updateCurrentUser);
+currentUserRoutes.put('/',jwtCheck, validateProfileUpdateRequest, updateCurrentUser);
 
 
 export default currentUserRoutes;

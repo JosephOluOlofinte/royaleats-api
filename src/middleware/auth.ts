@@ -16,8 +16,9 @@ declare global {
 // and validate it using Auth0 settings from environment variables
 
 export const jwtCheck = auth({
-  audience: process.env.AUTH0_AUDIENCE,
+  jwksUri: process.env.AUTH0_JWKS_URI,
   issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL,
+  audience: process.env.AUTH0_AUDIENCE,
   tokenSigningAlg: process.env.AUTH0_TOKEN_SIGNING_AL,
 });
 
@@ -62,3 +63,78 @@ export const jwtParse = async (
     return res.sendStatus(UNAUTHORIZED)
   }
 };
+
+
+
+export const authenticateUser = async (req: Request, res: Response, next: NextFunction) => {
+
+  try {
+    
+  } catch (error) {
+    // ignore error and try JWT check
+  }
+
+  const jwtCheck = auth({
+    jwksUri: process.env.AUTH0_JWKS_URI,
+    issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL,
+    audience: process.env.AUTH0_AUDIENCE,
+    tokenSigningAlg: process.env.AUTH0_TOKEN_SIGNING_AL,
+  });
+}
+// import jwksClient from 'jwks-rsa';
+
+// export const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
+//   const { authorization } = req.headers;
+//   if (!authorization || !authorization.startsWith('Bearer ')) {
+//     return res.status(401).json({ message: 'Missing or invalid token' });
+//   }
+
+//   const token = authorization.split(' ')[1];
+
+//   let decoded;
+//   try {
+//     // Step 1: Try verifying with your own secret (email+pw users)
+//     decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+//     // If this works, you know it's one of your tokens
+//     const user = await User.findById(decoded.userId);
+//     if (!user) return res.sendStatus(401);
+
+//     req.userId = user._id.toString();
+//     req.authSource = 'local';
+//     return next();
+//   } catch (err) {
+//     // Step 2: If not your token, try Auth0 verification
+//     try {
+//       // Auth0 publishes a JWKS endpoint with their public keys
+//       const client = jwksClient({
+//         jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`,
+//       });
+
+//       function getKey(header, callback) {
+//         client.getSigningKey(header.kid, (err, key) => {
+//           if (err) return callback(err);
+//           const signingKey = key.getPublicKey();
+//           callback(null, signingKey);
+//         });
+//       }
+
+//       decoded = jwt.verify(token, getKey, {
+//         audience: process.env.AUTH0_AUDIENCE,
+//         issuer: `https://${process.env.AUTH0_DOMAIN}/`,
+//         algorithms: ['RS256'],
+//       });
+
+//       const auth0Id = decoded.sub;
+//       const user = await User.findOne({ auth0Id });
+//       if (!user) return res.sendStatus(401);
+
+//       req.userId = user._id.toString();
+//       req.auth0Id = auth0Id;
+//       req.authSource = 'auth0';
+//       return next();
+//     } catch (auth0Err) {
+//       return res.status(401).json({ message: 'Invalid token' });
+//     }
+//   }
+// };
