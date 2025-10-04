@@ -6,7 +6,7 @@ import { jwtCheck } from '../middleware/auth';
 
 const authRoutes = express.Router();
 
-// /api/v1/auth
+// prefix: /auth
 authRoutes.post('/sign-up', registerUser);
 authRoutes.post('/sign-up/auth0', jwtCheck, registerUser)
 authRoutes.post('/sign-in', loginUser);
