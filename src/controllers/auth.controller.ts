@@ -49,8 +49,7 @@ export const createNewAuth0User = catchErrors(async (req, res) => {
 
     // get auth0Id from req if exists
     const auth0Id = req.auth?.payload.sub;
-    const email = req.auth?.payload.email;
-    const name = req.auth?.payload.name;
+    const { name, email } = req.body;
 
     if (auth0Id) {
       // check for existing user with auth0Id

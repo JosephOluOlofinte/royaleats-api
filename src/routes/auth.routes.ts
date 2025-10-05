@@ -8,7 +8,7 @@ const authRoutes = express.Router();
 
 // prefix: /auth
 authRoutes.post('/sign-up', createNewUser);
-authRoutes.post('/sign-up/auth0', jwtCheck, createNewAuth0User);
+authRoutes.post('/auth0', jwtCheck, createNewAuth0User);
 authRoutes.post('/sign-in', loginUser);
 
 
