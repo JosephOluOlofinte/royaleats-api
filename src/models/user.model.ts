@@ -6,9 +6,11 @@ const userSchema = new mongoose.Schema<iUserDocument>(
   {
     auth0Id: {
       type: String,
+      default: null,
     },
     name: {
       type: String,
+      default: null,
     },
     email: {
       type: String,
@@ -25,12 +27,15 @@ const userSchema = new mongoose.Schema<iUserDocument>(
     },
     address: {
       type: String,
+      default: null,
     },
     city: {
       type: String,
+      default: null,
     },
     country: {
       type: String,
+      default: null,
     },
     authType: {
       type: String,

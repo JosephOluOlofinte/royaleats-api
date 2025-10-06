@@ -1,9 +1,7 @@
 import { Request, Response } from 'express';
 import {
-  BAD_REQUEST,
   CONFLICT,
   CREATED,
-  INTERNAL_SERVER_ERROR,
   OK,
 } from '../constants/http';
 import User from '../models/user.model';
