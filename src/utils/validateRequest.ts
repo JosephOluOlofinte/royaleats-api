@@ -1,13 +1,12 @@
 import { Request } from "express";
-import { ZodObject } from "zod";
+import { ZodType } from "zod";
 
 
-const validateRequest = (schema: ZodObject, req: Request): unknown => {
-    const request = schema.parse({
-      ...req.body,
-      userAgent: req.headers["user-agent"],
-    })
-    return request;
-}
+const validateRequest = <T extends ZodType>(schema: T, req: Request) => {
+  return schema.parse({
+    ...req.body,
+    userAgent: req.headers['user-agent'],
+  });
+};
 
 export default validateRequest;

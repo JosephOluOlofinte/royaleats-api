@@ -6,7 +6,6 @@ const userSchema = new mongoose.Schema<iUserDocument>(
   {
     auth0Id: {
       type: String,
-      unique: true,
     },
     name: {
       type: String,
