@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import User from "../models/user.model";
 import { INTERNAL_SERVER_ERROR, NOT_FOUND, OK } from "../constants/http";
+import catchErrors from "../utils/catchErrors";
 
 
 
@@ -49,3 +50,6 @@ export const updateCurrentUser = async (req: Request, res: Response) => {
     })
   }
 }
+
+
+export const getCurrentUser = catchErrors(async (req, res) => {})
