@@ -5,7 +5,7 @@ import { validateProfileUpdateRequest } from "../middleware/validation";
 
 const currentUserRoutes = express.Router();
 
-// /api/v1/me
+// /api/v1/current-user
 currentUserRoutes.put('/',jwtCheck, validateProfileUpdateRequest, updateCurrentUser);
 
 
